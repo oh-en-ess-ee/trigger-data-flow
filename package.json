@@ -1,0 +1,13 @@
+{
+  "name": "trigger-pipeline-function",
+  "version": "1.0.0",
+  "description": "Invoke beam dataflow job",
+  "main": "index.js",
+  "repository": "https://github.com/oh-en-ess-ee/trigger-pipeline-function",
+  "author": "Equal Experts",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "googleapis": "^54.0.0"
+  }
+}

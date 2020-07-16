@@ -1,0 +1,12 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    dir: './build/deployable'
+    args:
+      - functions
+      - deploy
+      - kickOffPipeline
+      - --trigger-bucket=inbound-feed-bucket
+      - --runtime
+      - node10
+      - --set-env-vars
+      - OUTPUT_BUCKET=processed-files,TEMPLATE_BUCKET=pipeline-templates,PROFILE=$BRANCH_NAME
