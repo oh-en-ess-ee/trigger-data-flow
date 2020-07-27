@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/gcloud'
-    dir: './build/deployable'
+    dir: '.'
     args:
       - functions
       - deploy
