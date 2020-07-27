@@ -9,4 +9,4 @@ steps:
       - --runtime
       - node10
       - --set-env-vars
-      - OUTPUT_BUCKET=processed-files,TEMPLATE_BUCKET=pipeline-templates,PROFILE=$BRANCH_NAME
+      - OUTPUT_BUCKET=sandpit-processed-files,TEMPLATE_BUCKET=sandpit-data-flows,PROFILE=$BRANCH_NAME

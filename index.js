@@ -8,7 +8,7 @@ exports.kickOffPipeline = function(event, callback) {
         throw err;
       }
       if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-        authClient = authClientt.createScoped([
+        authClient = authClient.createScoped([
           'https://www.googleapis.com/auth/cloud-platform',
           'https://www.googleapis.com/auth/userinfo.email'
         ]);
@@ -22,7 +22,7 @@ exports.kickOffPipeline = function(event, callback) {
             outputFile: `gs://${process.env.OUTPUT_BUCKET}/${file.name}-processed`
           },
           jobName: 'process-feed',
-          gcsPath: `gs://${process.env.TEMPLATE_BUCKET}/templates/ProcessFeed`
+          gcsPath: `gs://${process.env.TEMPLATE_BUCKET}/dataflow/templates/local`
         }
       }, function(err, response) {
         if (err) {
