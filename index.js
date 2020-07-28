@@ -6,9 +6,9 @@ exports.kickOffPipeline = function (file, context, callback) {
 
     const request = {
       projectId: 'sandpit-282515',
+      location: "europe-west2",
       requestBody: {
         jobName: "Parse jsonl file",
-        location: "europe-west2",
         parameters: {
           input: `gs://${file.bucket}/${file.name}`,
           output: `gs://${process.env.OUTPUT_BUCKET}/${file.name}-processed`
