@@ -10,8 +10,7 @@ exports.kickOffPipeline = function (file, context, callback) {
       requestBody: {
         jobName: "Parse jsonl file",
         parameters: {
-          input: `gs://${file.bucket}/${file.name}`,
-          output: `gs://${process.env.OUTPUT_BUCKET}/${file.name}-processed`
+          inputFile: `gs://${file.bucket}/${file.name}`
         },
         environment: {
           tempLocation: `gs://${process.env.TEMPLATE_BUCKET}/tmp`
