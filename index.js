@@ -5,6 +5,7 @@ exports.kickOffPipeline = async function (file, context, callback) {
   if (file.name) {
     const request = {
       location: "europe-west2",
+      projectId: process.env.PROJECT_ID,
       requestBody: {
         jobName: "Parse jsonl file",
         parameters: {
@@ -23,7 +24,6 @@ exports.kickOffPipeline = async function (file, context, callback) {
       ]
     }).then(auth => {
       request.auth = auth;
-      request.projectId = auth.projectId
       let result = dataflow.projects.locations.templates.launch(request);
       callback()
       return result;
