@@ -8,9 +8,10 @@ exports.kickOffPipeline = function (file, context, callback) {
       projectId: 'sandpit-282515',
       requestBody: {
         jobName: "Parse jsonl file",
+        location: "europe-west2",
         parameters: {
-          inputFile: `gs://${file.bucket}/${file.name}`,
-          outputFile: `gs://${process.env.OUTPUT_BUCKET}/${file.name}-processed`
+          input: `gs://${file.bucket}/${file.name}`,
+          output: `gs://${process.env.OUTPUT_BUCKET}/${file.name}-processed`
         },
         environment: {
           tempLocation: `gs://${process.env.TEMPLATE_BUCKET}/tmp`
@@ -25,7 +26,7 @@ exports.kickOffPipeline = function (file, context, callback) {
       ]
     }).then(auth => {
       request.auth = auth;
-      let result = dataflow.projects.templates.launch(request);
+      let result = dataflow.projects.locations.templates.launch(request);
       callback()
       return result;
     }).catch(error => {
