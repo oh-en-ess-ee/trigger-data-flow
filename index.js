@@ -1,8 +1,7 @@
 const google = require("googleapis");
 
-exports.kickOffPipeline = function(event, callback) {
-  const file = event.data;
-  if (file.resourceState === 'exists' && file.name) {
+exports.kickOffPipeline = function (file, context, callback) {
+  if (file.name) {
     google.auth.getApplicationDefault(function (err, authClient, projectId) {
       if (err) {
         throw err;
@@ -13,7 +12,7 @@ exports.kickOffPipeline = function(event, callback) {
           'https://www.googleapis.com/auth/userinfo.email'
         ]);
       }
-      const dataflow = google.dataflow({ version: 'v1b3', auth: authClient});
+      const dataflow = google.dataflow({version: 'v1b3', auth: authClient});
       dataflow.projects.templates.create({
         projectId: projectId,
         resource: {
@@ -24,7 +23,7 @@ exports.kickOffPipeline = function(event, callback) {
           jobName: 'process-feed',
           gcsPath: `gs://${process.env.TEMPLATE_BUCKET}/dataflow/templates/local`
         }
-      }, function(err, response) {
+      }, function (err, response) {
         if (err) {
           console.error("Unable to run dataflow template. Error: ", err);
         }
