@@ -8,5 +8,7 @@ steps:
       - --trigger-bucket=inbound-feed-bucket
       - --runtime
       - nodejs10
+      - --region
+      - europe-west2
       - --set-env-vars
       - OUTPUT_BUCKET=sandpit-processed-files,TEMPLATE_BUCKET=sandpit-data-flows,PROFILE=$BRANCH_NAME
