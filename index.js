@@ -1,11 +1,9 @@
 const { google } = require("googleapis");
 const dataflow = google.dataflow('v1b3')
 
-exports.kickOffPipeline = function (file, context, callback) {
+exports.kickOffPipeline = async function (file, context, callback) {
   if (file.name) {
-
     const request = {
-      projectId: 'sandpit-282515',
       location: "europe-west2",
       requestBody: {
         jobName: "Parse jsonl file",
@@ -25,6 +23,7 @@ exports.kickOffPipeline = function (file, context, callback) {
       ]
     }).then(auth => {
       request.auth = auth;
+      request.projectId = auth.projectId
       let result = dataflow.projects.locations.templates.launch(request);
       callback()
       return result;
