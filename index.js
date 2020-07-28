@@ -3,8 +3,9 @@ const dataflow = google.dataflow('v1b3')
 
 exports.kickOffPipeline = function (file, context, callback) {
   if (file.name) {
+
     const request = {
-      projectId: process.env.GCLOUD_PROJECT,
+      projectId: 'sandpit-282515',
       requestBody: {
         jobName: "Parse jsonl file",
         parameters: {
